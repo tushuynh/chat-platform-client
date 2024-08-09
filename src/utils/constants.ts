@@ -107,9 +107,9 @@ export const settingsItems: SettingsItemType[] = [
 ];
 
 export enum CDN_URL {
-  BASE = 'https://chuachat.ams3.cdn.digitaloceanspaces.com/',
-  ORIGINAL = 'https://chuachat.ams3.cdn.digitaloceanspaces.com/original/',
-  PREVIEW = 'https://chuachat.ams3.digitaloceanspaces.com/preview/',
+  BASE = 'https://pfmjuqeakbaetoofuspf.supabase.co/storage/v1/object/public/chat-platform-storage/',
+  ORIGINAL = 'https://pfmjuqeakbaetoofuspf.supabase.co/storage/v1/object/public/chat-platform-storage/original/',
+  PREVIEW = 'https://pfmjuqeakbaetoofuspf.supabase.co/storage/v1/object/public/chat-platform-storage/preview/',
 }
 
 export enum SenderEvents {
