@@ -23,10 +23,11 @@ export const OfflineGroupRecipients: FC<Props> = ({
       .filter(
         (user) => !onlineUsers.find((onlineUser) => onlineUser.id === user.id)
       )
-      .map((user) => (
+      .map((user, index) => (
         <GroupRecipientSidebarItem
           online={false}
           onContextMenu={(e) => onUserContextMenu(e, user)}
+          key={index}
         >
           <div className="left">
             <UserAvatar user={user} />

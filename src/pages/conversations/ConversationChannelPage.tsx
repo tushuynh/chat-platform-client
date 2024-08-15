@@ -24,20 +24,23 @@ export const ConversationChannelPage = () => {
   useEffect(() => {
     const conversationId = id!;
     socket.emit('onConversationJoin', { conversationId });
-    socket.on('userJoin', () => {
-      console.log('userJoin');
-    });
-    socket.on('userLeave', () => {
-      console.log('userLeave');
-    });
+
+    // socket.on('userConversationJoin', () => {
+    //   console.log('user join conversation');
+    // });
+
+    // socket.on('userConversationLeave', () => {
+    //   console.log('user leave conversation');
+    // });
+
     socket.on('onTypingStart', () => {
-      console.log('onTypingStart: User has started typing...');
       setIsRecipientTyping(true);
     });
+
     socket.on('onTypingStop', () => {
-      console.log('onTypingStop: User has stopped typing...');
       setIsRecipientTyping(false);
     });
+
     socket.on('onMessageUpdate', (message) => {
       console.log('onMessageUpdate received');
       console.log(message);
@@ -46,8 +49,8 @@ export const ConversationChannelPage = () => {
 
     return () => {
       socket.emit('onConversationLeave', { conversationId });
-      socket.off('userJoin');
-      socket.off('userLeave');
+      // socket.off('userConversationJoin');
+      // socket.off('userConversationLeave');
       socket.off('onTypingStart');
       socket.off('onTypingStop');
       socket.off('onMessageUpdate');
@@ -59,7 +62,6 @@ export const ConversationChannelPage = () => {
       clearTimeout(timer);
       setTimer(
         setTimeout(() => {
-          console.log('User stopped typing');
           socket.emit('onTypingStop', { conversationId: id });
           setIsTyping(false);
         }, 2000)

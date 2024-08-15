@@ -25,10 +25,11 @@ export const OnlineGroupRecipients: FC<Props> = ({
 
   return (
     <>
-      {users.map((user) => (
+      {users.map((user, index) => (
         <GroupRecipientSidebarItem
           online={true}
           onContextMenu={(e) => onUserContextMenu(e, user)}
+          key={index}
         >
           <div className="left">
             <UserAvatar user={user} />

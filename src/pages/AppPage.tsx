@@ -70,12 +70,12 @@ export const AppPage = () => {
   useVideoCall();
 
   useEffect(() => {
-    console.log('Registering all events for AppPage');
     socket.on('onFriendRequestCancelled', (payload: FriendRequest) => {
       console.log('onFriendRequestCancelled');
       console.log(payload);
       dispatch(removeFriendRequest(payload));
     });
+
     socket.on(
       'onFriendRequestAccepted',
       (payload: AcceptFriendRequestResponse) => {

@@ -31,8 +31,8 @@ export const UserSidebar = () => {
           <UserAvatar user={user!} onClick={() => setShowModal(true)} />
         </UserSidebarHeader>
         <UserSidebarScrollableContainer>
-          {userSidebarItems.map((item) => (
-            <UserSidebarItem item={item} />
+          {userSidebarItems.map((item, index) => (
+            <UserSidebarItem item={item} key={index}/>
           ))}
         </UserSidebarScrollableContainer>
 
