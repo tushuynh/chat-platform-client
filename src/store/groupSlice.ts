@@ -86,14 +86,14 @@ export const groupsSlice = createSlice({
       state.groups.unshift(action.payload);
     },
     updateGroup: (state, action: PayloadAction<UpdateGroupPayload>) => {
-      console.log('Inside updateGroup');
       const { type, group } = action.payload;
       const existingGroup = state.groups.find((g) => g.id === group.id);
       const index = state.groups.findIndex((g) => g.id === group.id);
+
       if (!existingGroup) return;
+      
       switch (type) {
         case UpdateGroupAction.NEW_MESSAGE: {
-          console.log('Inside UpdateGroupAction.NEW_MESSAGE');
           state.groups.splice(index, 1);
           state.groups.unshift(group);
           break;

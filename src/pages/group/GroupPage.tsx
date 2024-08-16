@@ -46,8 +46,8 @@ export const GroupPage = () => {
 
   useEffect(() => {
     socket.on('onGroupMessage', (payload: GroupMessageEventPayload) => {
-      console.log('Group Message Received');
       const { group } = payload;
+
       dispatch(addGroupMessage(payload));
       dispatch(updateGroup({ type: UpdateGroupAction.NEW_MESSAGE, group }));
     });
