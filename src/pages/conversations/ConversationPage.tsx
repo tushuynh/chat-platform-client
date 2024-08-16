@@ -42,14 +42,10 @@ export const ConversationPage = () => {
     });
 
     socket.on('onConversation', (payload: Conversation) => {
-      console.log('Received onConversation Event');
-      console.log(payload);
       dispatch(addConversation(payload));
     });
 
     socket.on('onMessageDelete', (payload) => {
-      console.log('Message Deleted');
-      console.log(payload);
       dispatch(deleteMessage(payload));
     });
 

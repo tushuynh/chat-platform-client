@@ -132,9 +132,7 @@ export const groupsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchGroupsThunk.fulfilled, (state, action) => {
-        console.log(action.payload.data);
         state.groups = action.payload.data;
-        console.log(state.groups);
       })
       .addCase(removeGroupRecipientThunk.fulfilled, (state, action) => {
         const { data: updatedGroup } = action.payload;

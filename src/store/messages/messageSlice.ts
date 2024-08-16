@@ -28,7 +28,6 @@ export const messagesSlice = createSlice({
       conversationMessage?.messages.unshift(message);
     },
     deleteMessage: (state, action: PayloadAction<DeleteMessageResponse>) => {
-      console.log('Inside deleteMessage reducer');
       const { payload } = action;
       const conversationMessages = state.messages.find((cm) => cm.id === payload.conversationId);
       if (!conversationMessages) return;
@@ -53,7 +52,6 @@ export const messagesSlice = createSlice({
         const index = state.messages.findIndex((cm) => cm.id === id);
         const exists = state.messages.find((cm) => cm.id === id);
         if (exists) {
-          console.log('exists');
           state.messages[index] = action.payload.data;
         } else {
           state.messages.push(action.payload.data);

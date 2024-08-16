@@ -80,7 +80,6 @@ export const friendsSlice = createSlice({
         state.friends = action.payload.data;
       })
       .addCase(fetchFriendRequestThunk.fulfilled, (state, action) => {
-        console.log('fetchFriendRequestsThunk.fulfilled');
         state.friendRequests = action.payload.data;
       })
       .addCase(createFriendRequestThunk.fulfilled, (state, action) => {

@@ -15,7 +15,6 @@ export const CreateFriendRequestModal: FC<Props> = ({ setShowModal }) => {
   ) => {
     const { current } = ref;
     if (current === e.target) {
-      console.log('Close Modal');
       setShowModal(false);
     }
   };

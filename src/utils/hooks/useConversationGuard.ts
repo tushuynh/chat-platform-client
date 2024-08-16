@@ -9,7 +9,6 @@ export function useConversationGuard() {
   const controller = new AbortController();
 
   useEffect(() => {
-    console.log('Fetching Conversation');
     setLoading(true);
     getConversationById(parseInt(id!))
       .catch((err) => {

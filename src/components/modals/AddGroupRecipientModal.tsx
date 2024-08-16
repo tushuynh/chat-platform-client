@@ -27,7 +27,6 @@ export const AddGroupRecipientModal: FC<Props> = ({
   ) => {
     const { current } = ref;
     if (current === e.target) {
-      console.log('Close Modal');
       setShowModal(false);
     }
   };

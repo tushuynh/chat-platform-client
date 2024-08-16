@@ -21,7 +21,6 @@ export const ModalContainer: FC<PropsWithChildren & ModalContainerProps> = ({
   children,
   showModal,
 }) => {
-  console.log(`showModal: ${showModal}`);
   return (
     <ModalContainerStyle showModal={showModal}>{children}</ModalContainerStyle>
   );
