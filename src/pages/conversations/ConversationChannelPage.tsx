@@ -42,8 +42,6 @@ export const ConversationChannelPage = () => {
     });
 
     socket.on('onMessageUpdate', (message) => {
-      console.log('onMessageUpdate received');
-      console.log(message);
       dispatch(editMessage(message));
     });
 

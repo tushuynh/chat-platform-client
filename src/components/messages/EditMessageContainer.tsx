@@ -25,19 +25,17 @@ export const EditMessageContainer: FC<Props> = ({ onEditMessageChange }) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(messageBeingEdited);
-    console.log('Submitting Edit');
+
     if (!messageBeingEdited) {
-      console.log('messageBeingEdited is undefined... Returning');
       return;
     }
+
     const params: EditMessagePayload = {
       id: parseInt(id!),
       messageId: messageBeingEdited.id,
       content: messageBeingEdited.content || '',
     };
-    console.log(params);
-    console.log('Editing...', conversationType);
+
     conversationType === 'private'
       ? dispatch(editMessageThunk(params)).finally(() =>
           dispatch(setIsEditing(false))
