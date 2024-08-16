@@ -54,17 +54,16 @@ export const groupMessagesSlice = createSlice({
       groupMessage?.messages.unshift(message);
     },
     editGroupMessage: (state, action: PayloadAction<GroupMessageType>) => {
-      console.log('editGroupMessageThunk.fulfilled');
       const { payload } = action;
       const { id } = payload.group;
+
       const groupMessage = state.messages.find((gm) => gm.id === id);
       if (!groupMessage) return;
+
       const messageIndex = groupMessage.messages.findIndex(
         (m) => m.id === payload.id
       );
-      console.log(messageIndex);
       groupMessage.messages[messageIndex] = payload;
-      console.log('Updated Message');
     },
   },
   extraReducers: (builder) => {
