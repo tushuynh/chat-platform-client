@@ -35,22 +35,24 @@ export const ConversationPage = () => {
 
   useEffect(() => {
     socket.on('onMessage', (payload: MessageEventPayload) => {
-      console.log('Message Received');
-      const { conversation, message } = payload;
-      console.log(conversation, message);
+      const { conversation } = payload;
+      
       dispatch(addMessage(payload));
       dispatch(updateConversation(conversation));
     });
+
     socket.on('onConversation', (payload: Conversation) => {
       console.log('Received onConversation Event');
       console.log(payload);
       dispatch(addConversation(payload));
     });
+
     socket.on('onMessageDelete', (payload) => {
       console.log('Message Deleted');
       console.log(payload);
       dispatch(deleteMessage(payload));
     });
+
     return () => {
       socket.off('connected');
       socket.off('onMessage');

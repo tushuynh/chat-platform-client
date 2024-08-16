@@ -34,7 +34,6 @@ export const conversationsSlice = createSlice({
       state.conversations.unshift(action.payload);
     },
     updateConversation: (state, action: PayloadAction<Conversation>) => {
-      console.log('Inside updateConversation');
       const conversation = action.payload;
       const index = state.conversations.findIndex((c) => c.id === conversation.id);
       state.conversations.splice(index, 1);
