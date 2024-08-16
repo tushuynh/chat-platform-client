@@ -53,7 +53,6 @@ export const GroupPage = () => {
     });
 
     socket.on('onGroupCreate', (payload: Group) => {
-      console.log('Group Created...');
       dispatch(addGroup(payload));
     });
 

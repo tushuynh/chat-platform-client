@@ -83,7 +83,6 @@ export const groupsSlice = createSlice({
   initialState,
   reducers: {
     addGroup: (state, action: PayloadAction<Group>) => {
-      console.log(`addGroup reducer: Adding ${action.payload.id} to state`);
       state.groups.unshift(action.payload);
     },
     updateGroup: (state, action: PayloadAction<UpdateGroupPayload>) => {

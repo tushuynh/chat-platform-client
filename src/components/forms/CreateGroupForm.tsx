@@ -53,8 +53,6 @@ export const CreateGroupForm: FC<Props> = ({ setShowModal }) => {
     return dispatch(createGroupThunk({ title, users }))
       .unwrap()
       .then(({ data }) => {
-        console.log(data);
-        console.log('done');
         setShowModal(false);
         navigate(`/groups/${data.id}`);
       })
@@ -72,8 +70,8 @@ export const CreateGroupForm: FC<Props> = ({ setShowModal }) => {
   return (
     <form className={styles.createConversationForm} onSubmit={onSubmit}>
       <RecipientChipContainer>
-        {selectedRecipients.map((user) => (
-          <SelectedGroupRecipientChip user={user} removeUser={removeUser} />
+        {selectedRecipients.map((user, index) => (
+          <SelectedGroupRecipientChip user={user} removeUser={removeUser} key={index} />
         ))}
       </RecipientChipContainer>
       <GroupRecipientsField setQuery={setQuery} />

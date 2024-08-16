@@ -9,7 +9,6 @@ export function useGroupGuard() {
   const controller = new AbortController();
 
   useEffect(() => {
-    console.log('Fetching Group');
     setLoading(true);
     fetchGroupById(parseInt(id!))
       .catch((err) => {
