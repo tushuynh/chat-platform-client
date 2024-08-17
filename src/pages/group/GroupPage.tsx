@@ -61,8 +61,6 @@ export const GroupPage = () => {
      * to the group.
      */
     socket.on('onGroupUserAdd', (payload: AddGroupUserMessagePayload) => {
-      console.log('onGroupUserAdd');
-      console.log(payload);
       dispatch(addGroup(payload.group));
     });
 
@@ -73,7 +71,6 @@ export const GroupPage = () => {
     socket.on(
       'onGroupReceivedNewUser',
       ({ group }: AddGroupUserMessagePayload) => {
-        console.log('Received onGroupReceivedNewUser');
         dispatch(updateGroup({ group }));
       }
     );

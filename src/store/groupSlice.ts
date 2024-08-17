@@ -99,7 +99,6 @@ export const groupsSlice = createSlice({
           break;
         }
         default: {
-          console.log('Default Case for updateGroup');
           state.groups[index] = group;
           break;
         }
