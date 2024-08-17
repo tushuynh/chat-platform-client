@@ -144,7 +144,9 @@ export const groupsSlice = createSlice({
           state.groups[index] = updatedGroup;
         }
       })
-      .addCase(updateGroupOwnerThunk.fulfilled, (state, action) => {})
+      .addCase(updateGroupOwnerThunk.fulfilled, (state, action) => {
+        console.log('updateGroupOwnerThunk.fulfilled');
+      })
       .addCase(leaveGroupThunk.fulfilled, (state, action) => {
         console.log('leaveGroupThunk.fulfilled');
       })

@@ -30,6 +30,7 @@ export const GroupSidebarContextMenu: FC = () => {
 
   const leaveGroup = () => {
     if (!contextMenuGroup) return;
+
     dispatch(leaveGroupThunk(contextMenuGroup.id)).finally(() =>
       dispatch(toggleContextMenu(false))
     );

@@ -93,10 +93,9 @@ export const GroupPage = () => {
     socket.on(
       'onGroupParticipantLeft',
       ({ group, userId }: GroupParticipantLeftPayload) => {
-        console.log('onGroupParticipantLeft received');
         dispatch(updateGroup({ group }));
+
         if (userId === user?.id) {
-          console.log('payload.userId matches user.id...');
           dispatch(removeGroup(group));
           navigate('/groups');
         }
