@@ -77,7 +77,6 @@ export const AppPage = () => {
     socket.on(
       'onFriendRequestAccepted',
       (payload: AcceptFriendRequestResponse) => {
-        console.log('onFriendRequestAccepted');
         dispatch(removeFriendRequest(payload.friendRequest));
         socket.emit('getOnlineFriends');
         info(
