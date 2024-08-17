@@ -104,7 +104,6 @@ export const GroupPage = () => {
     );
 
     socket.on('onGroupOwnerUpdate', (group: Group) => {
-      console.log('received onGroupOwnerUpdate');
       dispatch(updateGroup({ group }));
     });
 

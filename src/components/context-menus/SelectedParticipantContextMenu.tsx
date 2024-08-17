@@ -50,8 +50,8 @@ export const SelectedParticipantContextMenu: FC<Props> = ({ points }) => {
   };
 
   const transferGroupOwner = () => {
-    console.log(`Transfering Group Owner to ${selectedUser?.id}`);
     if (!selectedUser) return;
+
     dispatch(
       updateGroupOwnerThunk({ id: parseInt(id!), newOwnerId: selectedUser.id })
     );
