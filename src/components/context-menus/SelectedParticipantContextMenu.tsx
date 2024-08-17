@@ -39,9 +39,8 @@ export const SelectedParticipantContextMenu: FC<Props> = ({ points }) => {
   );
 
   const kickUser = () => {
-    console.log(`Kicking User: ${selectedUser?.id}`);
-    console.log(selectedUser);
     if (!selectedUser) return;
+
     dispatch(
       removeGroupRecipientThunk({
         id: parseInt(id!),

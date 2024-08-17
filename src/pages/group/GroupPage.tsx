@@ -78,7 +78,6 @@ export const GroupPage = () => {
     socket.on(
       'onGroupRecipientRemoved',
       ({ group }: RemoveGroupUserMessagePayload) => {
-        console.log('onGroupRecipientRemoved');
         dispatch(updateGroup({ group }));
       }
     );
