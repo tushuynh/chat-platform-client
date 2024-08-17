@@ -71,8 +71,6 @@ export const AppPage = () => {
 
   useEffect(() => {
     socket.on('onFriendRequestCancelled', (payload: FriendRequest) => {
-      console.log('onFriendRequestCancelled');
-      console.log(payload);
       dispatch(removeFriendRequest(payload));
     });
 
