@@ -64,10 +64,10 @@ export const userSidebarItems: UserSidebarItemType[] = [
     id: 'friends',
     pathname: '/friends',
   },
-  {
-    id: 'connections',
-    pathname: '/connections',
-  },
+  // {
+  //   id: 'connections',
+  //   pathname: '/connections',
+  // },
   {
     id: 'settings',
     pathname: '/settings',
@@ -84,21 +84,21 @@ export const settingsItems: SettingsItemType[] = [
     label: 'Profile',
     pathname: '/settings/profile',
   },
-  {
-    id: 'security',
-    label: 'Security',
-    pathname: '/settings/security',
-  },
-  {
-    id: 'notifications',
-    label: 'Notifications',
-    pathname: '/settings/notifications',
-  },
-  {
-    id: 'integrations',
-    label: 'Integrations',
-    pathname: '/settings/integrations',
-  },
+  // {
+  //   id: 'security',
+  //   label: 'Security',
+  //   pathname: '/settings/security',
+  // },
+  // {
+  //   id: 'notifications',
+  //   label: 'Notifications',
+  //   pathname: '/settings/notifications',
+  // },
+  // {
+  //   id: 'integrations',
+  //   label: 'Integrations',
+  //   pathname: '/settings/integrations',
+  // },
   {
     id: 'appearance',
     label: 'Appearance',

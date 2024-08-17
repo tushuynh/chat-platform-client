@@ -49,12 +49,9 @@ export const friendsSlice = createSlice({
       );
     },
     setOnlineFriends: (state, action: PayloadAction<Friend[]>) => {
-      console.log('setFriends Reducer');
       state.onlineFriends = action.payload;
     },
     setOfflineFriends: (state) => {
-      console.log('setOfflineFriends Reducer');
-      console.log(state.onlineFriends);
       state.offlineFriends = state.friends.filter(
         (friend) =>
           !state.onlineFriends.find(
@@ -76,7 +73,6 @@ export const friendsSlice = createSlice({
     builder
       .addCase(fetchFriendsThunk.fulfilled, (state, action) => {
         console.log('fetchFriendsThunk.fulfilled');
-        console.log(action.payload.data);
         state.friends = action.payload.data;
       })
       .addCase(fetchFriendRequestThunk.fulfilled, (state, action) => {

@@ -26,7 +26,6 @@ export const SendFriendRequestForm: FC<Props> = ({ setShowModal }) => {
     dispatch(createFriendRequestThunk(username))
       .unwrap()
       .then(() => {
-        console.log('Success Friend Request');
         setShowModal(false);
         success('Friend Request Sent!');
       })

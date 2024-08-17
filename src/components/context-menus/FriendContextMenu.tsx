@@ -26,6 +26,7 @@ export const FriendContextMenu = () => {
 
   const removeFriend = () => {
     if (!selectedFriendContextMenu) return;
+
     dispatch(toggleContextMenu(false));
     dispatch(removeFriendThunk(selectedFriendContextMenu.id)).then(() =>
       socket.emit('getOnlineFriends')
@@ -37,7 +38,6 @@ export const FriendContextMenu = () => {
     recipient &&
       checkConversationOrCreate(recipient.id)
         .then(({ data }) => {
-          console.log(data);
           navigate(`/conversations/${data.id}`);
         })
         .catch((err) => {

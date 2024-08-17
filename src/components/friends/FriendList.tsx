@@ -25,7 +25,7 @@ export const FriendList = () => {
 
   const onContextMenu = (e: ContextMenuEvent, friend: Friend) => {
     e.preventDefault();
-    console.log('Friend Context Menu');
+    
     dispatch(toggleContextMenu(true));
     dispatch(setContextMenuLocation({ x: e.pageX, y: e.pageY }));
     dispatch(setSelectedFriend(friend));
