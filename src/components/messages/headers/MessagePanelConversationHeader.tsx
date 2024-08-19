@@ -40,7 +40,10 @@ export const MessagePanelConversationHeader = () => {
     };
 
   const videoCallUser = async () => {
-    if (!recipient) return console.log('Recipient undefined');
+    if (!recipient) {
+      return console.log('Recipient undefined');
+    }
+
     socket.emit('onVideoCallInitiate', {
       conversationId: conversation!.id,
       recipientId: recipient.id,
@@ -48,7 +51,10 @@ export const MessagePanelConversationHeader = () => {
     const constraints = { video: true, audio: true };
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     const payload = buildCallPayloadParams(stream, 'video');
-    if (!payload) throw new Error('Video Call Payload is undefined.');
+    if (!payload) {
+      throw new Error('Video Call Payload is undefined.');
+    }
+
     dispatch(initiateCallState(payload));
   };
 
@@ -71,8 +77,16 @@ export const MessagePanelConversationHeader = () => {
         <span>{recipient?.username || 'User'}</span>
       </div>
       <MessagePanelHeaderIcons>
-        <FaPhoneAlt size={24} cursor="pointer" onClick={voiceCallUser} />
-        <FaVideo size={30} cursor="pointer" onClick={videoCallUser} />
+        <FaPhoneAlt
+          size={24}
+          cursor="pointer"
+          onClick={voiceCallUser}
+        />
+        <FaVideo
+          size={30}
+          cursor="pointer"
+          onClick={videoCallUser}
+        />
       </MessagePanelHeaderIcons>
     </MessagePanelHeaderStyle>
   );

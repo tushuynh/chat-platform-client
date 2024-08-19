@@ -25,6 +25,7 @@ export const ConversationVideoCall = () => {
   const { localStream, remoteStream, caller, receiver } = useSelector(
     (state: RootState) => state.call
   );
+
   useEffect(() => {
     console.log('local stream was updated...');
     console.log(localStream);
@@ -35,6 +36,7 @@ export const ConversationVideoCall = () => {
       localVideoRef.current.muted = true;
     }
   }, [localStream]);
+
   useEffect(() => {
     console.log('remote stream was updated...');
     console.log(remoteStream);
