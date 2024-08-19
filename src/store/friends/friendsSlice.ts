@@ -43,7 +43,6 @@ export const friendsSlice = createSlice({
       );
     },
     removeFriend: (state, action: PayloadAction<Friend>) => {
-      console.log('removeFriend reducer');
       state.friends = state.friends.filter(
         (friend) => friend.id !== action.payload.id
       );

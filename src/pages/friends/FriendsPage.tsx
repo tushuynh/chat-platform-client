@@ -26,7 +26,6 @@ export const FriendsPage = () => {
     }, 10000);
 
     socket.on('onFriendRemoved', (friend: Friend) => {
-      console.log('onFriendRemoved');
       dispatch(removeFriend(friend));
       socket.emit('getOnlineFriends');
     });
