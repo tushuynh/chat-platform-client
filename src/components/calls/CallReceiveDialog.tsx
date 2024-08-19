@@ -11,12 +11,13 @@ import { SenderEvents, WebsocketEvents } from '../../utils/constants';
 export const CallReceiveDialog = () => {
   const { caller, callType } = useSelector((state: RootState) => state.call);
   const socket = useContext(SocketContext);
+
   const handleCall = (type: HandleCallType) => {
     const payload = { caller };
     switch (type) {
       case 'accept':
         return callType === 'video'
-          ? socket.emit('videoCallAccepted', payload)
+          ? socket.emit(SenderEvents.VIDEO_CALL_ACCEPT, payload)
           : socket.emit(SenderEvents.VOICE_CALL_ACCEPT, payload);
       case 'reject':
         return callType === 'video'
@@ -24,6 +25,7 @@ export const CallReceiveDialog = () => {
           : socket.emit(WebsocketEvents.VOICE_CALL_REJECTED, payload);
     }
   };
+
   return (
     <CallReceiveDialogContainer>
       <UserAvatar user={caller!} />
