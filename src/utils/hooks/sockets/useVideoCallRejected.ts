@@ -10,7 +10,6 @@ export function useVideoCallRejected() {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     socket.on(WebsocketEvents.VIDEO_CALL_REJECTED, (data) => {
-      console.log('receiver rejected the call ', data.receiver);
       dispatch(resetState());
     });
 
