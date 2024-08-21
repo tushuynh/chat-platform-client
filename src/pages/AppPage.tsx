@@ -45,6 +45,7 @@ export const AppPage = () => {
   const { info } = useToast({ theme: 'dark' });
   const { theme } = useSelector((state: RootState) => state.settings);
   const storageTheme = localStorage.getItem('theme') as SelectableTheme;
+
   useEffect(() => {
     dispatch(fetchFriendRequestThunk());
   }, [dispatch]);
@@ -110,29 +111,35 @@ export const AppPage = () => {
    * The user who is calling will have its own instance of MediaConnection/Call
    */
   useEffect(() => {
-    if (!peer) return;
+    if (!peer) {
+      return;
+    }
+
     peer.on('call', async (incomingCall) => {
-      console.log('Incoming Call!!!!!');
-      console.log(callType);
       const constraints = { video: callType === 'video', audio: true };
-      console.log(constraints);
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
-      console.log('Receiving Call & Got Local Stream:', stream.id);
+
       incomingCall.answer(stream);
       dispatch(setLocalStream(stream));
       dispatch(setCall(incomingCall));
     });
+
     return () => {
       peer.off('call');
     };
   }, [peer, callType, dispatch]);
 
   useEffect(() => {
-    if (!call) return;
-    call.on('stream', (remoteStream) =>
+    if (!call) {
+      return;
+    }
+
+    call.on('stream', (remoteStream) => {
       dispatch(setRemoteStream(remoteStream))
-    );
+    });
+
     call.on('close', () => console.log('call was closed'));
+
     return () => {
       call.off('stream');
       call.off('close');
@@ -149,22 +156,22 @@ export const AppPage = () => {
 
   useEffect(() => {
     if (connection) {
-      console.log('connection is defined....');
-      if (connection) {
-        console.log('connection is defined...');
-        connection.on('open', () => {
-          console.log('connection was opened');
-        });
-        connection.on('error', () => {
-          console.log('an error has occured');
-        });
-        connection.on('data', (data) => {
-          console.log('data received', data);
-        });
-        connection.on('close', () => {
-          console.log('connection closed');
-        });
-      }
+      connection.on('open', () => {
+        console.log('connection was opened');
+      });
+
+      connection.on('error', () => {
+        console.log('an error has occurred');
+      });
+
+      connection.on('data', (data) => {
+        console.log('data received', data);
+      });
+
+      connection.on('close', () => {
+        console.log('connection closed');
+      });
+
       return () => {
         connection?.off('open');
         connection?.off('error');
