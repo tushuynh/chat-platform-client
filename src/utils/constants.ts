@@ -128,4 +128,5 @@ export enum WebsocketEvents {
   VOICE_CALL_HANG_UP = 'onVoiceCallHangUp',
   VOICE_CALL_REJECTED = 'onVoiceCallRejected',
   VIDEO_CALL_REJECTED = 'onVideoCallRejected',
+  VIDEO_CALL_HANG_UP = 'onVideoCallHangUp',
 }

@@ -15,6 +15,7 @@ import {
 } from 'react-icons/bi';
 import { ImPhoneHangUp } from 'react-icons/im';
 import { SocketContext } from '../../utils/context/SocketContext';
+import { WebsocketEvents } from '../../utils/constants';
 
 export const ConversationVideoCall = () => {
   const localVideoRef = useRef<HTMLVideoElement>(null);
@@ -54,7 +55,7 @@ export const ConversationVideoCall = () => {
     });
 
   const closeCall = () => {
-    socket.emit('videoCallHangUp', { caller, receiver });
+    socket.emit(WebsocketEvents.VIDEO_CALL_HANG_UP, { caller, receiver });
   };
 
   return (

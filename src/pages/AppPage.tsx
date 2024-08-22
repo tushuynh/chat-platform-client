@@ -157,11 +157,11 @@ export const AppPage = () => {
   useEffect(() => {
     if (connection) {
       connection.on('open', () => {
-        console.log('connection was opened');
+        // console.log('connection was opened');
       });
 
       connection.on('error', () => {
-        console.log('an error has occurred');
+        // console.log('an error has occurred');
       });
 
       connection.on('data', (data) => {
@@ -169,7 +169,7 @@ export const AppPage = () => {
       });
 
       connection.on('close', () => {
-        console.log('connection closed');
+        // console.log('connection closed');
       });
 
       return () => {

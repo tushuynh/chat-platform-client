@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store';
 import { resetState } from '../../../store/call/callSlice';
 import { SocketContext } from '../../context/SocketContext';
+import { WebsocketEvents } from '../../constants';
 
 export function useVideoCallHangUp() {
   const socket = useContext(SocketContext);
@@ -11,28 +12,30 @@ export function useVideoCallHangUp() {
     (state: RootState) => state.call
   );
   useEffect(() => {
-    socket.on('onVideoCallHangUp', () => {
-      console.log('received onVideoCallHangUp');
-      localStream &&
+    socket.on(WebsocketEvents.VIDEO_CALL_HANG_UP, () => {
+      console.log('local stream: ', localStream?.id)
+      if (localStream) {
+        console.log('stopping local stream...')
         localStream.getTracks().forEach((track) => {
-          console.log(localStream.id);
-          console.log('stopping local track: ', track);
           track.stop();
         });
-      console.log(remoteStream);
-      remoteStream &&
+      }
+        
+      console.log('remote stream: ', remoteStream?.id)
+      if (remoteStream) {
+        console.log('stopping remote stream')
         remoteStream.getTracks().forEach((track) => {
-          console.log(remoteStream.id);
-          console.log('stopping remote track', track);
           track.stop();
         });
+      }
+
       call && call.close();
       connection && connection.close();
       dispatch(resetState());
     });
 
     return () => {
-      socket.off('onVideoCallHangUp');
+      socket.off(WebsocketEvents.VIDEO_CALL_HANG_UP);
     };
   }, [call, remoteStream, localStream]);
 }
