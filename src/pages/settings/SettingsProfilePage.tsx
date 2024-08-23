@@ -37,13 +37,10 @@ export const SettingsProfilePage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log('Updating About');
     setAbout(user?.profile?.about || '');
   }, [user?.profile?.about]);
 
   useEffect(() => {
-    console.log('Updating Banner URL');
-    console.log(user?.profile?.banner);
     setBannerSource(CDN_URL.BASE.concat(user?.profile?.banner || ''));
     setBannerSourceCopy(CDN_URL.BASE.concat(user?.profile?.banner || ''));
   }, [user?.profile?.banner]);
