@@ -135,10 +135,10 @@ export const AppPage = () => {
     }
 
     call.on('stream', (remoteStream) => {
-      dispatch(setRemoteStream(remoteStream))
+      dispatch(setRemoteStream(remoteStream));
     });
 
-    call.on('close', () => console.log('call was closed'));
+    // call.on('close', () => console.log('call was closed'));
 
     return () => {
       call.off('stream');

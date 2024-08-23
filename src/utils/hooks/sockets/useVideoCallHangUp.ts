@@ -13,17 +13,13 @@ export function useVideoCallHangUp() {
   );
   useEffect(() => {
     socket.on(WebsocketEvents.VIDEO_CALL_HANG_UP, () => {
-      console.log('local stream: ', localStream?.id)
       if (localStream) {
-        console.log('stopping local stream...')
         localStream.getTracks().forEach((track) => {
           track.stop();
         });
       }
         
-      console.log('remote stream: ', remoteStream?.id)
       if (remoteStream) {
-        console.log('stopping remote stream')
         remoteStream.getTracks().forEach((track) => {
           track.stop();
         });
