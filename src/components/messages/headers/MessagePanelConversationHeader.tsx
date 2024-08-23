@@ -59,15 +59,23 @@ export const MessagePanelConversationHeader = () => {
   };
 
   const voiceCallUser = async () => {
-    if (!recipient) return console.log('Recipient undefined');
+    if (!recipient) {
+      console.log('Recipient undefined');
+      return;
+    }
+
     socket.emit(SenderEvents.VOICE_CALL_INITIATE, {
       conversationId: conversation!.id,
       recipientId: recipient.id,
     });
+
     const constraints = { video: false, audio: true };
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     const payload = buildCallPayloadParams(stream, 'audio');
-    if (!payload) throw new Error('Voice Call Payload is undefined.');
+    if (!payload) {
+      throw new Error('Voice Call Payload is undefined.');
+    }
+
     dispatch(initiateCallState(payload));
   };
 
