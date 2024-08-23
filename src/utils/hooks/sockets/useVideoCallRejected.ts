@@ -8,6 +8,7 @@ import { SocketContext } from '../../context/SocketContext';
 export function useVideoCallRejected() {
   const socket = useContext(SocketContext);
   const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     socket.on(WebsocketEvents.VIDEO_CALL_REJECTED, (data) => {
       dispatch(resetState());
