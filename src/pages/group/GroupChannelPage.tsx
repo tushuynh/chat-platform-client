@@ -9,7 +9,7 @@ import {
   editGroupMessage,
   fetchGroupMessagesThunk,
 } from '../../store/groupMessageSlice';
-import { GroupMessageType } from '../../utils/types';
+import { GroupMessageType, User } from '../../utils/types';
 import { GroupRecipientsSidebar } from '../../components/sidebars/group-recipients/GroupRecipientsSidebar';
 import { EditGroupModal } from '../../components/modals/EditGroupModal';
 
@@ -17,7 +17,10 @@ export const GroupChannelPage = () => {
   const { id } = useParams();
   const socket = useContext(SocketContext);
   const dispatch = useDispatch<AppDispatch>();
+  const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>();
+  const [isTyping, setIsTyping] = useState(false);
   const [isRecipientTyping, setIsRecipientTyping] = useState(false);
+  const [userTypings, setUserTypings] = useState<string[]>([]);
 
   const { showEditGroupModal } = useSelector(
     (state: RootState) => state.groups
@@ -36,17 +39,46 @@ export const GroupChannelPage = () => {
 
     socket.emit('onGroupJoin', { groupId });
 
+    socket.on('onGroupTypingStart', (user: User) => {
+      setUserTypings((prevUsers) => [...prevUsers, user.firstName]);
+      console.log(`typing: `, userTypings);
+      setIsRecipientTyping(true);
+    });
+
+    socket.on('onGroupTypingStop', (user: User) => {
+      setUserTypings((prevUsers) =>
+        prevUsers.filter((item) => item !== user.firstName)
+      );
+
+      setIsRecipientTyping(false);
+    });
+
     socket.on('onGroupMessageUpdate', (message: GroupMessageType) => {
       dispatch(editGroupMessage(message));
     });
 
     return () => {
       socket.emit('onGroupLeave', { groupId });
+      socket.off('onGroupTypingStart');
+      socket.off('onGroupTypingStop');
       socket.off('onGroupMessageUpdate');
     };
   }, [id]);
 
-  const sendTypingStatus = () => {};
+  const sendTypingStatus = () => {
+    if (isTyping) {
+      clearTimeout(timer);
+      setTimer(
+        setTimeout(() => {
+          socket.emit('onGroupTypingStop', { groupId: id });
+          setIsTyping(false);
+        }, 2000)
+      );
+    } else {
+      setIsTyping(true);
+      socket.emit('onGroupTypingStart', { groupId: id });
+    }
+  };
 
   return (
     <>
@@ -55,6 +87,7 @@ export const GroupChannelPage = () => {
         <MessagePanel
           sendTypingStatus={sendTypingStatus}
           isRecipientTyping={isRecipientTyping}
+          userTypings={userTypings}
         ></MessagePanel>
       </ConversationChannelPageStyle>
       {showSidebar && <GroupRecipientsSidebar />}

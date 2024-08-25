@@ -28,11 +28,13 @@ import { MessagePanelHeader } from './MessagePanelHeader';
 type Props = {
   sendTypingStatus: () => void;
   isRecipientTyping: boolean;
+  userTypings?: Array<string>;
 };
 
 export const MessagePanel: FC<Props> = ({
   sendTypingStatus,
   isRecipientTyping,
+  userTypings,
 }) => {
   const toastId = 'rateLimitToast';
   const dispatch = useDispatch();
@@ -123,7 +125,12 @@ export const MessagePanel: FC<Props> = ({
             }
           />
           <MessageTypingStatus>
-            {isRecipientTyping ? `${recipient?.firstName} is typing...` : ''}
+            {isRecipientTyping && selectedType === 'group'
+              ? `${userTypings?.join(',')} is typing...`
+              : ''}
+            {isRecipientTyping && selectedType === 'private'
+              ? `${recipient?.firstName} is typing...`
+              : ''}
           </MessageTypingStatus>
         </MessagePanelFooter>
       </MessagePanelStyle>
