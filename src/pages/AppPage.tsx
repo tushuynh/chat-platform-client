@@ -53,6 +53,9 @@ export const AppPage = () => {
   useEffect(() => {
     if (!user) return;
     const newPeer = new Peer(user.peer.id, {
+      host: process.env.REACT_APP_PEER_HOST,
+      port: parseInt(process.env.REACT_APP_PEER_PORT!),
+      path: process.env.REACT_APP_PEER_PATH,
       config: {
         iceServers: [
           {
